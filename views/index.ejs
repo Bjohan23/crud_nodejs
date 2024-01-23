@@ -1,0 +1,48 @@
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crud</title>
+  </head>
+  <body>
+    <!-- importamos la barra de navegacion -->
+    <%- include('../public/navbar') %>
+
+    <div class="container">
+      <a href="/create" class="btn btn-outline-primary mt-4">
+        <i class="bx bx-plus"></i>
+      </a>
+      <table class="table table-striped table-hover table-bordered mt-4">
+        <thead>
+          <tr class="bg-primary text-white">
+            <th scope="col">ID</th>
+            <th scope="col">USUARIO</th>
+            <th scope="col">ROL</th>
+            <th scope="col">ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Object.values(results).forEach(user => { %>
+
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.usuario %></td>
+            <td><%= user.rol %></td>
+            <td>
+              <a href="/edit/<%= user.id %>" class="btn btn-outline-warning">
+                <i class="bx bx-edit"></i>
+              </a>
+              <a href="/delete/<%= user.id %>" class="btn btn-outline-danger">
+                <i class="bx bx-trash"></i>
+              </a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <h1>
+        <i class="bx bxs-category"></i>
+      </h1>
+    </div>
+  </body>
+</html>
