@@ -3,13 +3,13 @@ const path = require("path"); // Asegúrate de incluir el módulo 'path'
 const http = require("http");
 // const config = require("config");
 const pg = require("pg");
+const bd = "postgres://johan:6kFs5GDYo9pDt4zDXmONeTCD3xkrX4cz@dpg-cmo5d7un7f5s73d31vj0-a/crud_nodejs_db";
 
 // config();
 
 const app = express();
 const pool = new pg.Pool({
-  connectionString:
-    "postgres://johan:6kFs5GDYo9pDt4zDXmONeTCD3xkrX4cz@dpg-cmo5d7un7f5s73d31vj0-a.oregon-postgres.render.com/crud_nodejs_db",
+  connectionString: bd,
   ssl: true,
 });
 
