@@ -1,4 +1,4 @@
-<form action="/save" method="POST">
+<form action="/guardar" method="POST">
   <div class="form-group">
     <label for="exampleFormControlInput1">Nombre</label>
     <input
@@ -10,11 +10,14 @@
     />
   </div>
   <div class="form-group">
-    <label for="usuario"  >Rol</label>
-    <select class="form-control" name="rol" id="rol" tabindex="2">
-      <option value="admin">Admin</option>
-      <option value="trabajador">Trabajador</option>
-    </select>
+    <label for="Apellido">Apellido</label>
+    <input
+      name="apellido"
+      type="text"
+      class="form-control"
+      id="apellido"
+      placeholder="ingrese su apellido"
+    />
   </div>
   <br />
   <button type="submit" class="btn btn-primary">Guardar</button>
