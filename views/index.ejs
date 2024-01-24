@@ -23,11 +23,10 @@
         </thead>
         <tbody>
           <% Object.values(results).forEach(user => { %>
-
           <tr>
             <td><%= user.id %></td>
-            <td><%= user.usuario %></td>
-            <td><%= user.rol %></td>
+            <td><%= user.nombre %></td>
+            <td><%= user.apellido %></td>
             <td>
               <a href="/edit/<%= user.id %>" class="btn btn-outline-warning">
                 <i class="bx bx-edit"></i>
