@@ -10,7 +10,7 @@ const bd = "postgres://johan:6kFs5GDYo9pDt4zDXmONeTCD3xkrX4cz@dpg-cmo5d7un7f5s73
 const app = express();
 const pool = new pg.Pool({
   connectionString: bd,
-  ssl: true,
+  // ssl: true,
 });
 
 // Llamamos al motor de plantillas
