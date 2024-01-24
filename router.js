@@ -2,12 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 const conexion = require("./database/db");
+const { pool } = require("./app");
 
 router.get("/", (req, res) => {
   res.render("create.ejs");
   // conexion.query("SELECT * FROM users", (err, results) => {
   //   res.render("index.ejs", { results: results.recordset });
   // });
+});
+router.get("/ping", async (req, res) => {
+  const result = await pool.query("SELECT NOW()");
+  return res.json(result.rows[0]);
 });
 
 // ruta para crear registros
