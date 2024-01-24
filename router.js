@@ -4,9 +4,10 @@ const router = express.Router();
 const conexion = require("./database/db");
 
 router.get("/", (req, res) => {
-  conexion.query("SELECT * FROM users", (err, results) => {
-    res.render("index.ejs", { results: results.recordset });
-  });
+  res.render("create.ejs");
+  // conexion.query("SELECT * FROM users", (err, results) => {
+  //   res.render("index.ejs", { results: results.recordset });
+  // });
 });
 
 // ruta para crear registros
