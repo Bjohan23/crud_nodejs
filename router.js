@@ -1,31 +1,45 @@
 const express = require("express");
 const router = express.Router();
+const pool = require("./database/db");
 
-const conexion = require("./database/db");
-const { pool } = require("./app");
+router.get("/", async (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error al obtener la conexión");
+    }
 
-router.get("/", (req, res) => {
-  res.render("create.ejs");
-  // conexion.query("SELECT * FROM users", (err, results) => {
-  //   res.render("index.ejs", { results: results.recordset });
-  // });
+    connection.query("SELECT * FROM usuarios", (err, results) => {
+      connection.release(); // Liberar la conexión después de la consulta
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error en la consulta");
+      }
+
+      res.json(results);
+    });
+  });
 });
+
 router.get("/ping", async (req, res) => {
-  const result = await pool.query("SELECT NOW()");
-  return res.json(result.rows[0]);
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error al obtener la conexión");
+    }
+
+    connection.query("SELECT NOW()", (err, results) => {
+      connection.release(); // Liberar la conexión después de la consulta
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Error en la consulta");
+      }
+
+      res.json(results[0]);
+    });
+  });
 });
 
-// ruta para crear registros
-router.get("/create", (req, res) => {
-  res.render("create.ejs");
-});
-
-// para guardar los datos
-const crud = require("./controllers/crud");
-// traemos a los metodos que usaremos
-router.post("/save", crud.save, (req, res) => {
-  // esto se ejecutará después de que crud.save responda
-  console.log(res.body);
-});
+// Otras rutas...
 
 module.exports = router;

@@ -1,22 +1,16 @@
-const sql = require("mssql");
+const sql = require("mysql2");
 
-const config = {
-  user: "johan",
-  password: "230803",
-  server: "localhost",
-  database: "crud_nodejs_db",
-  options: {
-    encrypt: false, // Dependiendo de tu configuración
-    trustServerCertificate: true, // Dependiendo de tu configuración
-  },
-};
+const pool = sql.createPool({
+  host: "viaduct.proxy.rlwy.net",
+  user: "root",
+  password: "-61GHE-FHgG665gHEgc2HEFBEE2ceb--",
+  database: "railway",
+  port: 22598,
+});
 
-sql.connect(config)
-  .then(() => {
-    console.log("Conectado a la base de datos");
-  })
-  .catch((error) => {
-    console.error("Error de conexión a la base de datos:", error);
-  });
+pool.getConnection((err, connection) => {
+  if (err) throw err;
+  console.log("Connected to MySQL server as id " + connection.threadId);
+});
 
-module.exports = sql;
+module.exports = pool;
