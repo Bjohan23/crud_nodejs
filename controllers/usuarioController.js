@@ -69,7 +69,6 @@ const usuariosController = {
     const datos={
       nombre: nombre,
       apellido: apellido,
-      id : id
     }
     console.log(datos)
     // actualizar 
