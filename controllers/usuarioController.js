@@ -74,10 +74,10 @@ const usuariosController = {
     // actualizar 
     // let actualizar ='UPDATE usuarios SET ? WHERE id = ?', [{nombre1:nombre, apellido1: apellido}, id];
     // let actualizar = `UPDATE usuarios SET nombre = '${nombre}', apellido = '${apellido}' WHERE id = ${id }`;
-    pool.query('UPDATE usuarios SET nombre=?, apellido=? WHERE id = ?', [nombre, apellido, id], (err, results) => {
+    pool.query('UPDATE usuarios SET ? WHERE id = ?', [datos, id], (err, results) => {
       if (err) {
         console.log(err);
-        res.status(500).send("Error al insertar datos en la base de datos");
+        res.status(500).send("Error al insertar datos en la bd");
       } else {
         res.redirect("/");
       }
