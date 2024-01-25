@@ -1,10 +1,7 @@
 const express = require("express");
-const path = require("path"); // Asegúrate de incluir el módulo 'path'
 const http = require("http");
 
 const app = express();
-
-// Configuración de la conexión a la base de datos
 
 // Llamamos al motor de plantillas
 app.set("view engine", "ejs");
