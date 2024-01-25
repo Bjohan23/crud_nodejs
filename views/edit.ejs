@@ -1,2 +1,8 @@
-<%- include('../public/navbar') %>
-
+<%- include('../public/navbar') %> <% if ( user ){%>
+<div class="container mt-4">
+  <div class="card border-secondary">
+    <div class="card-header">Editar registro</div>
+    <div class="card-body"><%- include('../public/editForm') %></div>
+  </div>
+</div>
+<% } %>

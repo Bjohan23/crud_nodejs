@@ -15,18 +15,6 @@ app.use(express.json());
 
 app.use("/", require("./router"));
 
-// ruta para crear registros
-app.get("/create", (req, res) => {
-  res.render("create.ejs");
-});
-
-// para guardar los datos
-const crud = require("./controllers/crud");
-// traemos a los metodos que usaremos
-app.post("/save", crud.save, (req, res) => {
-  // esto se ejecutará después de que crud.save responda
-  console.log(res.body);
-});
 
 const asignarPuertoAutomático = () => {
   const puertoInicial = 3000;
