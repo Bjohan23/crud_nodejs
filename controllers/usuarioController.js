@@ -63,25 +63,22 @@ const usuariosController = {
   },
   actualizarUsuario: (req, res) => {
     const id = req.params.id;
-    const nombre= req.body.nombre;
-    const apellido= req.body.apellido;
-    const datos={
-      nombre: nombre,
-      apellido: apellido,
-      id : id
-    }
-    console.log(datos)
-    // actualizar 
-    // let actualizar ='UPDATE usuarios SET ? WHERE id = ?', [{nombre1:nombre, apellido1: apellido}, id];
-    // let actualizar = `UPDATE usuarios SET nombre = '${nombre}', apellido = '${apellido}' WHERE id = ${id }`;
-    pool.query('UPDATE usuarios SET ? WHERE id = ?', [{nombre:nombre, apellido: apellido}, id], (err, results) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al insertar datos en la base de datos");
-      } else {
-        res.redirect("/");
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+
+    // Actualizar en la base de datos
+    pool.query(
+      "UPDATE usuarios SET ? WHERE id = ?",
+      [{ nombre: nombre, apellido: apellido }, id],
+      (err, results) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error al actualizar datos en la base de datos");
+        } else {
+          res.redirect("/");
+        }
       }
-    });
+    );
   },
 };
 
