@@ -39,7 +39,6 @@ const usuariosController = {
   editarUsuario: (req, res) => {
     let id = req.params.id;
     let editar = `SELECT * FROM usuarios WHERE id = ${id}`;
-    console.log(id);
     pool.query(editar, (err, results) => {
       if (err) {
         console.log(err);
@@ -63,26 +62,22 @@ const usuariosController = {
     });
   },
   actualizarUsuario: (req, res) => {
-    const id = req.params.id;
-    const nombre= req.body.nombre;
-    const apellido= req.body.apellido;
-    const datos={
-      nombre: nombre,
-      apellido: apellido,
-    }
-    console.log(datos)
-    // actualizar 
-    // let actualizar ='UPDATE usuarios SET ? WHERE id = ?', [{nombre1:nombre, apellido1: apellido}, id];
-    // let actualizar = `UPDATE usuarios SET nombre = '${nombre}', apellido = '${apellido}' WHERE id = ${id }`;
-    pool.query('UPDATE usuarios SET ? WHERE id = ?', [datos, id], (err, results) => {
+    const id = req.body.id;
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+
+    // Consulta SQL para actualizar el usuario en la base de datos
+    const actualizar = `UPDATE usuarios SET nombre = ?, apellido = ? WHERE id = ?`;
+
+    // Ejecutar la consulta con los parámetros
+    pool.query(actualizar, [nombre, apellido, id], (err, results) => {
       if (err) {
         console.log(err);
-        res.status(500).send("Error al insertar datos en la bd");
+        res.status(500).send("Error al actualizar datos en la base de datos");
       } else {
         res.redirect("/");
       }
     });
   },
 };
-
 module.exports = usuariosController;

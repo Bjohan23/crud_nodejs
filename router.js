@@ -23,8 +23,7 @@ router.get("/edit/:id", usuariosController.editarUsuario);
 router.get("/delete/:id", usuariosController.borrarUsuario);
 
 router.post("/guardar", usuariosController.guardarUsuario); //usamos los controllers
-// router.post("/actualizar", usuariosController.actualizarUsuario); //usamos los controllers
-router.post("/actualizar/:id", usuariosController.actualizarUsuario);
+router.post("/actualizar", usuariosController.actualizarUsuario);
 
 // manejar error 404
 router.use((req, res) => {
