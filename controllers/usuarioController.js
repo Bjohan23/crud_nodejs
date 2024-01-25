@@ -39,6 +39,7 @@ const usuariosController = {
   editarUsuario: (req, res) => {
     let id = req.params.id;
     let editar = `SELECT * FROM usuarios WHERE id = ${id}`;
+    console.log(id);
     pool.query(editar, (err, results) => {
       if (err) {
         console.log(err);
